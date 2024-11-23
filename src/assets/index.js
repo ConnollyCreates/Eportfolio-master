@@ -28,7 +28,7 @@ import minecraft from "./company/minecraft.png";
 import theta_chi from "./company/theta-chi.png";
 import hurricane from "./hurricane.png";
 import datastructs from "./datastructs.png";
-
+import threejsPortfolio from "./threejs.png";
 
 export {
   logo,
@@ -54,6 +54,7 @@ export {
   tailwind,
   typescript,
   threejs,
+  threejsPortfolio,
   bishopkenny,
   minecraft,
   theta_chi,

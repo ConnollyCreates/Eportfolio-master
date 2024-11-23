@@ -19,6 +19,7 @@ import {
     hurricane,
     datastructs,
     threejs,
+    threejsPortfolio,
   } from "../assets";
   
   export const navLinks = [
@@ -207,6 +208,27 @@ import {
       ],
       image: datastructs,
       source_code_link: "https://github.com/ConnollyCreates/CS1/tree/main",
+    },
+    {
+      name: "Portfolio Website",
+      description:
+        "After completing a course on Three.js, I decided to create a portfolio website to showcase my work. This website was built using React.js, Tailwind CSS, and Three.js.",
+      tags: [
+        {
+          name: "React",
+          color: "pink-text-gradient",
+        },
+        {
+          name: "Three.js",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Tailwind CSS",
+          color: "green-text-gradient",
+        },
+      ],
+      image: threejsPortfolio,
+      source_code_link: "https://github.com/ConnollyCreates/Eportfolio-master",
     },
     
   ];
