@@ -58,17 +58,20 @@ const Navbar = () => {
       } hover:text-white text-[18px] font-medium cursor-pointer`}
       onClick={() => setActive(nav.title)}
     >
-      {nav.title === "Resume" ? (
-        // Direct link for the Resume
+      {nav.title === "LinkedIn" || nav.title === "GitHub" ? (
+        // External links
         <a
-          href={nav.id} // Use the id as the URL for the Resume
+          href={nav.id}
           target="_blank"
           rel="noopener noreferrer"
         >
           {nav.title}
         </a>
+      ) : nav.title === "Resume" ? (
+        // Internal route to resume page
+        <Link to={nav.id}>{nav.title}</Link>
       ) : (
-        // Default behavior for other links
+        // Default behavior for section anchors
         <a href={`#${nav.id}`}>{nav.title}</a>
       )}
     </li>
@@ -100,17 +103,20 @@ const Navbar = () => {
         setActive(nav.title);
       }}
     >
-      {nav.title === "Resume" ? (
-        // Direct link for the Resume
+      {nav.title === "LinkedIn" || nav.title === "GitHub" ? (
+        // External links
         <a
-          href={nav.id} // Use the id as the URL for the Resume
+          href={nav.id}
           target="_blank"
           rel="noopener noreferrer"
         >
           {nav.title}
         </a>
+      ) : nav.title === "Resume" ? (
+        // Internal route to resume page
+        <Link to={nav.id}>{nav.title}</Link>
       ) : (
-        // Default behavior for other links
+        // Default behavior for section anchors
         <a href={`#${nav.id}`}>{nav.title}</a>
       )}
     </li>

@@ -29,6 +29,16 @@ import theta_chi from "./company/theta-chi.png";
 import hurricane from "./hurricane.png";
 import datastructs from "./datastructs.png";
 import threejsPortfolio from "./threejs.png";
+import wells_fargo from "./company/wells-fargo.png";
+import strongmanBg from "./strongman-bg.jpg"; 
+import headshot from "./headshot.jpg"; 
+import knighthacks from "./knight-hacks.png";
+import resume from "./gabriel-connolly-resume.pdf";
+import paracosm from "./paracosm.jpg";
+import floridaAcademicScholar from "./florida-academic-scholar.jpg";
+import thetaChiAward from "./theta-chi-award.jpg";
+import wellsFargoSpeaking from "./wells-fargo-speaking.jpg";
+import strongmanBg3 from "./strongman-bg3.jpg";
 
 export {
   logo,
@@ -60,4 +70,14 @@ export {
   theta_chi,
   hurricane,
   datastructs,
+  wells_fargo,
+  strongmanBg,
+  headshot,
+  knighthacks,
+  resume,
+  paracosm,
+  floridaAcademicScholar,
+  thetaChiAward,
+  wellsFargoSpeaking,
+  strongmanBg3,
 };

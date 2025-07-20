@@ -20,6 +20,10 @@ import {
     datastructs,
     threejs,
     threejsPortfolio,
+    wells_fargo,
+    strongmanBg,
+    knighthacks,
+    paracosm,
   } from "../assets";
   
   export const navLinks = [
@@ -36,8 +40,16 @@ import {
       title: "Contact",
     },
     {
-      id: "https://drive.google.com/file/d/1MR2Zf7vc_OG84wDZbRsRHAn0sQaGq-wf/view",
+      id: "/resume",
       title: "Resume",
+    },
+    {
+      id: "https://www.linkedin.com/in/gabriel-connolly-27b732131/", 
+      title: "LinkedIn",
+    },
+    {
+      id: "https://github.com/ConnollyCreates", 
+      title: "GitHub",
     },
   ];
   
@@ -57,6 +69,7 @@ import {
     {
       title: "Amateur Strongman",
       icon: creator,
+      backgroundImage: strongmanBg,
     },
   ];
   
@@ -109,10 +122,70 @@ import {
   
   const experiences = [
     {
+      title: "SWE Intern - Sophomore Discovery Fellowship Program",
+      company_name: "Wells Fargo",
+      icon: wells_fargo,
+      iconBg: "#E6DEDD",
+      iconSize: "70%", // Corporate logos often need more space
+      date: "June 2025 - July 2025",
+      points: [
+        "Placed on the Wealth and Investment Management Technology team under Investment Solutions in the annuity space.",
+        "Gained exposure to the enterprise-wide migration from Pivotal Cloud Foundry to Red Hat OpenShift Container Platform, learning about containerization and CI/CD implications.",
+        "Used Postman to analyze RESTful endpoints and validate annuity-related workflows across distributed systems.",
+        "Participated in a Taproot Foundation pro bono consulting project supporting the Collective Empowerment Group (CEG), a nonprofit focused on affordable homeownership initiatives in Miami’s Black communities.",
+        "Participated in Agile ceremonies, including stand-ups and sprint reviews, gaining hands-on experience with Scrum development methodology.",
+      ],
+    },
+    {
+      title: "Outreach Director",
+      company_name: "Knight Hacks",
+      icon: knighthacks,
+      iconBg: "#E6DEDD",
+      iconSize: "75%", // Fraternity logos usually work well at this size
+      date: "Dec 2024 - Present",
+      points: [
+        "Designed and implemented outreach campaigns across UCF’s CS and CE departments, contributing to a 20% increase in new member signups.",
+        "Created a repeatable outreach playbook for future directors to manage outreach responsibilities.",
+        "Collaborated with the executive board on event planning, volunteer coordination, and outreach campaigns to strengthen the club’s presence on campus and beyond.",
+        "Manage Knight Hacks’ Instagram and LinkedIn presence, using social media strategy to expand brand awareness and attract new members and sponsors.",
+      ],
+    },
+    {
+      title: "Risk Manager, Secretary, Scholarship Chair",
+      company_name: "Theta Chi Fraternity",
+      icon: theta_chi,
+      iconBg: "#E6DEDD",
+      iconSize: "75%", 
+      date: "Nov 2023 - Present",
+      points: [
+        "Awarded the Victor Simon Memorial Scholarship and Janet Blue Scholarship, recognizing leadership, academic excellence, and commitment to the values of Theta Chi Fraternity.",
+        "Received the Resolute Man distinction, one of the most prestigious honors in Theta Chi Fraternity, recognizing exceptional leadership, academic achievement, and dedication to the fraternity’s core values.",
+        "Selected as 1 of 10 students nationally to attend the Resolute Man Commercial Banking Experience at Fifth Third Bank Headquarters in Cincinnati, gaining firsthand insights into commercial banking, payments, and executive leadership.",
+        "Implemented strategies to identify and promote scholarship opportunities for other members, helping the chapter secure over $15,000 in total scholarships during the year.",
+        "Monitored chapter academic performance, tracked GPA standings, and connected members with tutoring and campus resources to promote academic success.",
+      ],
+    },
+    {
+      title: "Java Developer",
+      company_name: "Freelance Work",
+      icon: minecraft,
+      iconBg: "#383E56",
+      iconSize: "90%", 
+      date: "Jan 2022 - Jan 2023",
+      points: [
+        "Developed a commissioned Java plugin for a server owner, creating a user-friendly GUI to streamline the most recent and frequently used administrative actions. Improving admistrative action speed by 45%",
+        "Developed on a Java plugin with a team of four people that optimized server performance and gameplay, resulting in a 34% increase in player retention and a 23% boost in revenue for the company using Spigot API.",
+        "Implemented responsive design principles to ensure an optimal experience, enhancing accessibility and user engagement.",
+        "Designed and implemented custom administrative commands, usable in-game or in console, tailored to the specific needs of moderators and admins, enhancing server management and control.",
+      ],
+    },
+    
+    {
       title: "Software Developer Apprentice",
       company_name: "The Region",
       icon: minecraft,
       iconBg: "#383E56",
+      iconSize: "90%", 
       date: "May 2021 - July 2022",
       points: [
         "Aided development of Java plugins using Spigot API and Bungee API for a video game server peaking at 1000+ concurrent players.",
@@ -126,6 +199,7 @@ import {
       company_name: "Java Programming Club",
       icon: bishopkenny,
       iconBg: "#E6DEDD",
+      iconSize: "82%", 
       date: "Jan 2021 - Feb 2022",
       points: [
         "Maintained records of over 60 club meetings, activities, and events, ensuring clear communication for members and leadership",
@@ -134,32 +208,8 @@ import {
         "Participating in code reviews and providing constructive feedback to other developers.",
       ],
     },
-    {
-      title: "Java Developer",
-      company_name: "Freelance Work",
-      icon: minecraft,
-      iconBg: "#383E56",
-      date: "Jan 2022 - Jan 2023",
-      points: [
-        "Developed a commissioned Java plugin for a server owner, creating a user-friendly GUI to streamline the most recent and frequently used administrative actions. Improving admistrative action speed by 45%",
-        "Developed on a Java plugin with a team of four people that optimized server performance and gameplay, resulting in a 34% increase in player retention and a 23% boost in revenue for the company using Spigot API.",
-        "Implemented responsive design principles to ensure an optimal experience, enhancing accessibility and user engagement.",
-        "Designed and implemented custom administrative commands, usable in-game or in console, tailored to the specific needs of moderators and admins, enhancing server management and control.",
-      ],
-    },
-    {
-      title: "Risk Manager, Secretary, Scholarship Chair",
-      company_name: "Theta Chi Fraternity",
-      icon: theta_chi,
-      iconBg: "#E6DEDD",
-      date: "Nov 2023 - Present",
-      points: [
-        "Implemented strategies to identify and secure scholarship opportunities for members, garnering over $11,000 in scholarships to members.",
-        "Collaborated with chapter leadership and external advisors to enforce policies related to alcohol consumption, event planning, and member conduct, contributing to a significant decrease in incidents during events.",
-        "Tracked members’ GPA standings and provided resources to those in need of academic support.",
-        "Oversaw and updated fraternity documents, including membership rosters, meeting agendas, By-Laws, and policies.",
-      ],
-    },
+    
+    
   ];
   
   const projects = [
@@ -230,7 +280,31 @@ import {
       image: threejsPortfolio,
       source_code_link: "https://github.com/ConnollyCreates/Eportfolio-master",
     },
-    
+    {
+      name: "Paracosm",
+      description:
+        "Paracosm is a web-accessible program that allows users to enter a world of creation. They can manipulate objects in Unity created 3D environment. Speak through an audio detection system to put objects in their world. And finally dive into an imagined world that was created by them.",
+      tags: [
+        {
+          name: "C#",
+          color: "pink-text-gradient",
+        },
+        {
+          name: "Unity",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Bitcamp 2025",
+          color: "green-text-gradient",
+        },
+        {
+          name: "OpenAI Whisper",
+          color: "blue-text-gradient",
+        },
+      ],
+      image: paracosm,
+      source_code_link: "https://devpost.com/software/paracosm",
+    },
   ];
   
   export { services, technologies, experiences, projects };

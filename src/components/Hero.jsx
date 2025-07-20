@@ -1,24 +1,36 @@
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
+import { headshot } from "../assets"; 
 
 const Hero = () => {
   return (
     <section className="relative w-full h-screen mx-auto">
   <div className="absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5">
     <div className="flex flex-col justify-center items-center mt-5">
-      <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-      <div className="w-1 sm:h-80 h-40 violet-gradient" />
+      <div className="w-5 h-5 rounded-full bg-[#DC2626]" />
+      <div className="w-1 sm:h-80 h-40 red-gradient" />
     </div>
 
-    <div>
-      <h1 className="text-white text-4xl font-bold">
-        Hi, I'm <span className="text-[#915EFF]">Gabriel</span>
-      </h1>
-      <p className="text-white-100 mt-2">
-        I am a <b>Computer Science Student</b> at,  <br /> the <b>University of Central Florida</b>. <br/>
-       I also compete in <b>powerlifting</b> and <b>strongman</b> meets<br /> Look around my portfolio!.
-      </p>
+    <div className="flex flex-row items-center gap-8">
+      <div>
+        <h1 className="text-white text-4xl font-bold">
+          Hi, I'm <span className="text-[#DC2626]">Gabriel</span>
+        </h1>
+        <p className="text-white-100 mt-2">
+          I am a <b>Computer Science Student</b> at,  <br /> the <b>University of Central Florida</b>. <br/>
+         I also compete in <b>powerlifting</b> and <b>strongman</b> meets<br /> Look around my portfolio!
+        </p>
+      </div>
+      
+      {/* Headshot */}
+      <div className="hidden sm:block">
+        <img
+          src={headshot}
+          alt="Gabriel Connolly"
+          className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#DC2626] shadow-lg"
+        />
+      </div>
     </div>
   </div>
 
