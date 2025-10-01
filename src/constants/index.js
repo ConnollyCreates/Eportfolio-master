@@ -24,6 +24,7 @@ import {
     strongmanBg,
     knighthacks,
     paracosm,
+    memorAI,
   } from "../assets";
   
   export const navLinks = [
@@ -141,13 +142,14 @@ import {
       company_name: "Knight Hacks",
       icon: knighthacks,
       iconBg: "#E6DEDD",
-      iconSize: "75%", // Fraternity logos usually work well at this size
+      iconSize: "75%", 
       date: "Dec 2024 - Present",
       points: [
-        "Designed and implemented outreach campaigns across UCF’s CS and CE departments, contributing to a 20% increase in new member signups.",
+        "Designed and implemented outreach campaigns across UCF’s CS and CE departments, contributing to a 102% increase in new member signups.",
         "Created a repeatable outreach playbook for future directors to manage outreach responsibilities.",
         "Collaborated with the executive board on event planning, volunteer coordination, and outreach campaigns to strengthen the club’s presence on campus and beyond.",
         "Manage Knight Hacks’ Instagram and LinkedIn presence, using social media strategy to expand brand awareness and attract new members and sponsors.",
+        "Converted outreach into 1,000+ participants and establishing Knight Hacks as a top Southeast collegiate hackathon.",
       ],
     },
     {
@@ -213,6 +215,56 @@ import {
   ];
   
   const projects = [
+    {
+      name: "MemorAI",
+      description:
+        "MemorAI is an AR-enabled web app built at ShellHacks 2025 to support Alzheimer’s patients in recognizing loved ones. I designed the computer vision pipeline using FastAPI, InsightFace, and FAISS. The system integrates with Azure/Firebase for secure photo storage and scales to 100+ enrolled people with over 1,000 stored photos. On the frontend, a Next.js AR interface overlays dynamic “memory cards” with names and relationships, delivering accurate, real-time cues to improve recall and reduce confusion in daily interactions.",
+      tags: [
+        {
+          name: "OpenCV",
+          color: "pink-text-gradient",
+        },
+        {
+          name: "Python",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "ShellHacks 2025",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Azure/Firebase",
+          color: "blue-text-gradient",
+        },
+      ],
+      image: memorAI,
+      source_code_link: "https://github.com/ConnollyCreates/MemorAI",
+    },
+    {
+      name: "Paracosm",
+      description:
+        "Paracosm is a web-accessible program that allows users to enter a world of creation. They can manipulate objects in Unity created 3D environment. Speak through an audio detection system to put objects in their world. And finally dive into an imagined world that was created by them.",
+      tags: [
+        {
+          name: "C#",
+          color: "pink-text-gradient",
+        },
+        {
+          name: "Unity",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Bitcamp 2025",
+          color: "green-text-gradient",
+        },
+        {
+          name: "OpenAI Whisper",
+          color: "blue-text-gradient",
+        },
+      ],
+      image: paracosm,
+      source_code_link: "https://devpost.com/software/paracosm",
+    },
     {
       name: "HurricaneGIS",
       description:
@@ -280,31 +332,7 @@ import {
       image: threejsPortfolio,
       source_code_link: "https://github.com/ConnollyCreates/Eportfolio-master",
     },
-    {
-      name: "Paracosm",
-      description:
-        "Paracosm is a web-accessible program that allows users to enter a world of creation. They can manipulate objects in Unity created 3D environment. Speak through an audio detection system to put objects in their world. And finally dive into an imagined world that was created by them.",
-      tags: [
-        {
-          name: "C#",
-          color: "pink-text-gradient",
-        },
-        {
-          name: "Unity",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "Bitcamp 2025",
-          color: "green-text-gradient",
-        },
-        {
-          name: "OpenAI Whisper",
-          color: "blue-text-gradient",
-        },
-      ],
-      image: paracosm,
-      source_code_link: "https://devpost.com/software/paracosm",
-    },
+    
   ];
   
   export { services, technologies, experiences, projects };

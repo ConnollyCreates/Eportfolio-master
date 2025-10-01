@@ -39,6 +39,7 @@ import floridaAcademicScholar from "./florida-academic-scholar.jpg";
 import thetaChiAward from "./theta-chi-award.jpg";
 import wellsFargoSpeaking from "./wells-fargo-speaking.jpg";
 import strongmanBg3 from "./strongman-bg3.jpg";
+import memorAI from "./memor-ai.png";
 
 export {
   logo,
@@ -80,4 +81,5 @@ export {
   thetaChiAward,
   wellsFargoSpeaking,
   strongmanBg3,
+  memorAI,
 };
