@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-19T00:00:00Z",
+  "title": "Design System: Gabriel Connolly Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "arena": {
+        "role": "neutral",
+        "displayName": "Arena",
+        "canonical": "oklch(14% 0.018 25)",
+        "tonalRamp": ["oklch(10% 0.014 25)", "oklch(14% 0.018 25)", "oklch(21% 0.024 25)", "oklch(32% 0.024 25)", "oklch(46% 0.021 25)", "oklch(62% 0.017 25)", "oklch(78% 0.012 25)", "oklch(94% 0.007 25)"]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "oklch(21% 0.024 25)",
+        "tonalRamp": ["oklch(11% 0.016 25)", "oklch(16% 0.02 25)", "oklch(21% 0.024 25)", "oklch(34% 0.024 25)", "oklch(48% 0.021 25)", "oklch(63% 0.017 25)", "oklch(79% 0.012 25)", "oklch(94% 0.007 25)"]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "oklch(94% 0.015 85)",
+        "tonalRamp": ["oklch(18% 0.015 85)", "oklch(30% 0.016 85)", "oklch(42% 0.017 85)", "oklch(54% 0.017 85)", "oklch(66% 0.017 85)", "oklch(78% 0.016 85)", "oklch(88% 0.016 85)", "oklch(94% 0.015 85)"]
+      },
+      "muted-tape": {
+        "role": "neutral",
+        "displayName": "Muted Tape",
+        "canonical": "oklch(76% 0.025 75)",
+        "tonalRamp": ["oklch(18% 0.02 75)", "oklch(28% 0.023 75)", "oklch(40% 0.025 75)", "oklch(52% 0.026 75)", "oklch(64% 0.026 75)", "oklch(76% 0.025 75)", "oklch(86% 0.02 75)", "oklch(94% 0.012 75)"]
+      },
+      "signal-red": {
+        "role": "primary",
+        "displayName": "Signal Red",
+        "canonical": "oklch(62% 0.20 29)",
+        "tonalRamp": ["oklch(18% 0.07 29)", "oklch(28% 0.11 29)", "oklch(40% 0.16 29)", "oklch(51% 0.19 29)", "oklch(62% 0.20 29)", "oklch(73% 0.16 29)", "oklch(84% 0.10 29)", "oklch(94% 0.035 29)"]
+      },
+      "plate-blue": {
+        "role": "secondary",
+        "displayName": "Plate Blue",
+        "canonical": "oklch(58% 0.12 245)",
+        "tonalRamp": ["oklch(18% 0.045 245)", "oklch(28% 0.07 245)", "oklch(39% 0.10 245)", "oklch(49% 0.12 245)", "oklch(58% 0.12 245)", "oklch(70% 0.10 245)", "oklch(82% 0.065 245)", "oklch(94% 0.025 245)"]
+      },
+      "success-green": {
+        "role": "tertiary",
+        "displayName": "Success Green",
+        "canonical": "oklch(77% 0.14 135)",
+        "tonalRamp": ["oklch(18% 0.045 135)", "oklch(29% 0.075 135)", "oklch(41% 0.11 135)", "oklch(53% 0.14 135)", "oklch(65% 0.15 135)", "oklch(77% 0.14 135)", "oklch(87% 0.09 135)", "oklch(95% 0.035 135)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Broadcast Display",
+        "family": "Barlow Condensed",
+        "purpose": "Name, opening statement, section headings, and score figures."
+      },
+      "heading": {
+        "displayName": "Result Heading",
+        "family": "Barlow Condensed",
+        "purpose": "Roles, companies, projects, and outcome headings."
+      },
+      "body": {
+        "displayName": "Recruiter Body",
+        "family": "Source Sans 3",
+        "purpose": "Readable outcome sentences, details, education, and contact copy."
+      },
+      "label": {
+        "displayName": "Score Label",
+        "family": "Source Sans 3",
+        "purpose": "Short navigation, event, status, date, and button labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bar-separation",
+        "value": "0 3px 8px oklch(8% 0.01 25 / 0.7)",
+        "purpose": "Separate the code-native barbell from a detailed photograph only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "broadcast-ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Plate entry, bar rise, button lift, and selected-state transitions."
+      },
+      {
+        "name": "plate-step",
+        "value": "820ms",
+        "purpose": "Settle time for one manually loaded experience plate pair."
+      }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "720px" },
+      { "name": "tablet", "value": "900px" },
+      { "name": "playscreen-split", "value": "1080px" }
+    ],
+    "performance": {
+      "javascriptGzipMax": "65KB",
+      "cssGzipMax": "10KB",
+      "initialMobileHeroMax": "90KB",
+      "secondaryEventMedia": "Load after explicit event selection"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single strongest action in a region, including the next named load chapter.",
+      "html": "<button class=\"ds-primary\">LOAD WELLS FARGO</button>",
+      "css": ".ds-primary { min-height: 48px; padding: 12px 18px; border: 1px solid oklch(62% 0.20 29); color: oklch(14% 0.018 25); background: oklch(62% 0.20 29); font: 700 12px/1.25 'Source Sans 3', sans-serif; letter-spacing: .08em; transition: transform 180ms cubic-bezier(.16,1,.3,1), background-color 180ms; } .ds-primary:hover { transform: translateY(-2px); } .ds-primary:focus-visible { outline: 3px solid oklch(58% 0.12 245); outline-offset: 3px; }"
+    },
+    {
+      "name": "Event Selector",
+      "kind": "button-group",
+      "description": "Two adjacent accessible buttons for Deadlift and Overhead Press, with Deadlift selected by default.",
+      "html": "<div class=\"ds-events\" aria-label=\"Strength event\"><button aria-pressed=\"true\">DEADLIFT</button><button aria-pressed=\"false\">OVERHEAD PRESS</button></div>",
+      "css": ".ds-events { display: grid; grid-template-columns: 1fr 1fr; } .ds-events button { min-height: 48px; border: 1px solid oklch(76% 0.025 75); color: oklch(94% 0.015 85); background: oklch(14% 0.018 25); font: 700 12px/1.25 'Source Sans 3', sans-serif; letter-spacing: .08em; } .ds-events button[aria-pressed='true'] { border-color: oklch(58% 0.12 245); color: oklch(14% 0.018 25); background: oklch(58% 0.12 245); } .ds-events button:focus-visible { outline: 3px solid oklch(58% 0.12 245); outline-offset: 3px; }"
+    },
+    {
+      "name": "Experience Plate",
+      "kind": "custom",
+      "description": "A lightweight plate pair that labels one work, community, or service chapter. The four inboard-to-outboard pairs are red, red, blue, then green.",
+      "html": "<span class=\"ds-plate\" aria-hidden=\"true\">WF</span>",
+      "css": ".ds-plate { display: grid; width: 58px; aspect-ratio: 1; place-items: center; border: 5px solid oklch(58% 0.12 245); border-radius: 50%; color: oklch(94% 0.015 85); background: oklch(21% 0.024 25); font: 700 20px/1 'Barlow Condensed', sans-serif; box-shadow: 0 3px 8px oklch(8% 0.01 25 / .7); }"
+    },
+    {
+      "name": "Chapter Strip",
+      "kind": "custom",
+      "description": "Four always-readable chapter labels that highlight as their plate pairs are loaded; the adjacent story panel supplies the one-line summary.",
+      "html": "<ol class=\"ds-chapters\"><li><strong>Wells Fargo</strong><span>Enterprise engineering</span></li><li><strong>Salt32</strong><span>Co-founder and builder</span></li><li><strong>Knight Hacks</strong><span>Community leadership</span></li><li><strong>USO</strong><span>Philanthropy</span></li></ol>",
+      "css": ".ds-chapters { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; border-block: 1px solid oklch(76% 0.025 75 / .4); } .ds-chapters li { min-width: 0; padding: 12px 16px; } .ds-chapters strong, .ds-chapters span { display: block; } .ds-chapters strong { color: oklch(94% 0.015 85); font: 700 20px/1 'Barlow Condensed', sans-serif; } .ds-chapters span { margin-top: 4px; color: oklch(76% 0.025 75); font: 600 11px/1.25 'Source Sans 3', sans-serif; }"
+    },
+    {
+      "name": "Experience Result Row",
+      "kind": "disclosure",
+      "description": "A fast-scanning role result followed by optional native technical details.",
+      "html": "<article class=\"ds-result-row\"><header><p>WELLS FARGO</p><h3>Software Engineer Intern</h3><time>2026</time></header><p>Modernized a platform used by more than 20,000 advisors.</p><details><summary>Technical details</summary><p>Implementation details and technologies.</p></details></article>",
+      "css": ".ds-result-row { padding: 24px 0; border-block: 1px solid oklch(76% 0.025 75 / .35); color: oklch(94% 0.015 85); } .ds-result-row header { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; } .ds-result-row h3 { margin: 0; font: 600 32px/1 'Barlow Condensed', sans-serif; } .ds-result-row p, .ds-result-row summary { font-family: 'Source Sans 3', sans-serif; } .ds-result-row summary { min-height: 44px; display: flex; align-items: center; color: oklch(58% 0.12 245); cursor: pointer; }"
+    },
+    {
+      "name": "GC Plate Badge",
+      "kind": "identity",
+      "description": "An original circular portfolio mark that avoids third-party competition branding.",
+      "html": "<svg class=\"ds-badge\" viewBox=\"0 0 120 120\" role=\"img\" aria-label=\"GC, load tested systems, 2027\"><circle cx=\"60\" cy=\"60\" r=\"54\"/><text x=\"60\" y=\"68\" text-anchor=\"middle\">GC</text></svg>",
+      "css": ".ds-badge { width: 64px; color: oklch(94% 0.015 85); fill: oklch(21% 0.024 25); stroke: currentColor; } .ds-badge text { fill: currentColor; stroke: none; font: 700 34px/1 'Barlow Condensed', sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Load-Tested Broadcast",
+    "overview": "A recruiter watches one deliberate lift on a competition broadcast, then reads a clean results sheet before the next candidate call. Strongman supplies the memorable frame, while four plate pairs introduce Gabriel's work, community, and service. One theatrical opening playscreen leads into conventional Experience, Projects, About, and Contact sections.",
+    "keyCharacteristics": [
+      "One competition playscreen followed by a familiar recruiter journey.",
+      "Authentic lift photography with code-native broadcast graphics.",
+      "Barlow Condensed for physical force and Source Sans 3 for fast reading.",
+      "Ruled score tables and lower thirds instead of repeated cards.",
+      "An original GC plate badge with no implied sports affiliation.",
+      "Optional click-by-click lift motion that never gates Gabriel's story or navigation."
+    ],
+    "rules": [
+      {
+        "name": "The Broadcast Signal Rule",
+        "body": "Red prompts action, blue marks selection and plate hardware, and green confirms completion. Every colored state also needs text, shape, or icon support.",
+        "section": "colors"
+      },
+      {
+        "name": "The Human Voice Rule",
+        "body": "Display typography can be loud. Copy sounds like Gabriel speaking to a curious recruiter: warm, specific, and supported by the resume.",
+        "section": "typography"
+      },
+      {
+        "name": "The Optional Interaction Rule",
+        "body": "Identity, chapter labels, actions, and navigation remain available before, during, and without the lift sequence.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do place identity, May 2027 timing, role fit, four personal chapters, and direct actions in the first viewport.",
+      "Do use authentic strongman photography as the memorable personal frame.",
+      "Do keep Experience, Projects, About, and Contact familiar and fast to scan.",
+      "Do use score graphics, lower thirds, ruled tables, and plate geometry with restraint.",
+      "Do make every interactive result available as visible text.",
+      "Do use the original GC · LOAD TESTED · SYSTEMS · 2027 badge."
+    ],
+    "donts": [
+      "Do not use the exact WSM logo, WORLD'S STRONGEST MAN branding, copied trade dress, or any implied affiliation.",
+      "Do not build a video game menu, fantasy environment, segmented quest, or recruiter traversal puzzle.",
+      "Do not use purple gradients, glass panels, repeated icon cards, or vague superlatives.",
+      "Do not use monospace as shorthand for engineering credibility.",
+      "Do not use gradient text, colored side-stripe borders, nested cards, decorative shadows, or chrome bevels.",
+      "Do not hide core content behind the lift interaction, menu, hover, or animation."
+    ]
+  }
+}
