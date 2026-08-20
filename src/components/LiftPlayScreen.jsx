@@ -1,23 +1,17 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
-const MAX_STORIES = 4;
-const TRANSITION_DURATION = 820;
-const DEFAULT_PLATE_LABELS = ["WF", "S32", "KH", "USO"];
+const TRANSITION_DURATION = 1180;
+const DEFAULT_PLATE_LABELS = ["25", "25", "25", "25", "5"];
 
+// Inboard to outboard: four 25 kg plates and one 5 kg plate per side.
+// A 20 kg bar plus 105 kg per side makes Gabriel's 230 kg deadlift.
 const PLATE_SLOTS = [
-  { leftX: 280, rightX: 438, y: 86, width: 42, height: 108, color: "red" },
-  { leftX: 226, rightX: 486, y: 76, width: 48, height: 128, color: "red" },
-  { leftX: 166, rightX: 540, y: 66, width: 54, height: 148, color: "blue" },
-  { leftX: 100, rightX: 600, y: 56, width: 60, height: 168, color: "green" },
+  { leftX: 236, y: 75, width: 46, height: 130, color: "red", storyIndex: 0, delay: 0 },
+  { leftX: 188, y: 75, width: 46, height: 130, color: "red", storyIndex: 1, delay: 0 },
+  { leftX: 140, y: 75, width: 46, height: 130, color: "red", storyIndex: 2, delay: 0 },
+  { leftX: 92, y: 75, width: 46, height: 130, color: "red", storyIndex: 3, delay: 0 },
+  { leftX: 62, y: 96, width: 28, height: 88, color: "white", storyIndex: 3, delay: 110 },
 ];
-
-const getEventId = (event, index) =>
-  event?.id || event?.slug || event?.label?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || `event-${index + 1}`;
-
-const getEventImage = (event) => {
-  const image = event?.image || event?.media || {};
-  return typeof image === "string" ? { src: image } : image;
-};
 
 const getStoryId = (story, index) => story?.id || `story-${index + 1}`;
 
@@ -27,22 +21,11 @@ const getStoryTitle = (story, index) =>
 const getReducedMotionPreference = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const LiftPlayScreen = ({
-  events = [],
-  stories = [],
-  onStoryChange,
-}) => {
+const LiftPlayScreen = ({ deadlift = {}, stories = [], onStoryChange }) => {
   const instanceId = useId().replace(/:/g, "");
-  const eventList = useMemo(() => (Array.isArray(events) ? events.filter(Boolean) : []), [events]);
-  const storyList = useMemo(() => {
-    return Array.isArray(stories) ? stories.filter(Boolean).slice(0, MAX_STORIES) : [];
-  }, [stories]);
-  const defaultEvent =
-    eventList.find((event, index) =>
-      `${getEventId(event, index)} ${event.label || ""}`.toLowerCase().includes("deadlift"),
-    ) || eventList[0];
-  const [selectedEventId, setSelectedEventId] = useState(() =>
-    defaultEvent ? getEventId(defaultEvent, eventList.indexOf(defaultEvent)) : "",
+  const storyList = useMemo(
+    () => (Array.isArray(stories) ? stories.filter(Boolean).slice(0, 4) : []),
+    [stories],
   );
   const [reducedMotion, setReducedMotion] = useState(getReducedMotionPreference);
   const [loadedCount, setLoadedCount] = useState(0);
@@ -54,14 +37,11 @@ const LiftPlayScreen = ({
   const timerRef = useRef(null);
   const runIdRef = useRef(0);
 
-  const selectedEvent =
-    eventList.find((event, index) => getEventId(event, index) === selectedEventId) || defaultEvent;
-  const selectedIndex = selectedEvent ? eventList.indexOf(selectedEvent) : -1;
-  const activeEventId = selectedEvent ? getEventId(selectedEvent, selectedIndex) : "";
-  const selectedImage = getEventImage(selectedEvent);
-  const imageSources = Array.isArray(selectedImage.sources) ? selectedImage.sources : [];
+  const image = deadlift.image || {};
+  const imageSources = Array.isArray(image.sources) ? image.sources : [];
+  const totalStories = storyList.length;
   const activeStory = activeStoryIndex >= 0 ? storyList[activeStoryIndex] : null;
-  const nextStory = loadedCount < storyList.length ? storyList[loadedCount] : null;
+  const nextStory = loadedCount < totalStories ? storyList[loadedCount] : null;
   const settlingStory = settlingStoryIndex >= 0 ? storyList[settlingStoryIndex] : null;
 
   const notifyStoryChange = useCallback(
@@ -85,18 +65,18 @@ const LiftPlayScreen = ({
       if (!story) return;
 
       const nextCount = storyIndex + 1;
-      const isComplete = nextCount === MAX_STORIES && storyList.length >= MAX_STORIES;
+      const isComplete = nextCount === totalStories;
       setLoadedCount(nextCount);
       setActiveStoryIndex(storyIndex);
       setSettlingStoryIndex(-1);
       setComplete(isComplete);
       setLiveMessage(
-        `${getStoryTitle(story, storyIndex)} chapter loaded.${isComplete ? " All four experience chapters are loaded." : ""}`,
+        `${getStoryTitle(story, storyIndex)} loaded.${isComplete ? " The 230 kilogram deadlift story is complete." : ""}`,
       );
       notifyStoryChange(getStoryId(story, storyIndex));
       timerRef.current = null;
     },
-    [notifyStoryChange, storyList],
+    [notifyStoryChange, storyList, totalStories],
   );
 
   const commitReset = useCallback(() => {
@@ -153,7 +133,7 @@ const LiftPlayScreen = ({
 
     setResetting(true);
     setComplete(false);
-    setLiveMessage("Resetting the experience bar.");
+    setLiveMessage("Returning the plates to the rack.");
     const runId = runIdRef.current;
     timerRef.current = window.setTimeout(() => {
       if (runIdRef.current !== runId) return;
@@ -179,7 +159,7 @@ const LiftPlayScreen = ({
     }
 
     setSettlingStoryIndex(storyIndex);
-    setLiveMessage(`${getStoryTitle(story, storyIndex)} chapter loading.`);
+    setLiveMessage(`${getStoryTitle(story, storyIndex)} loading onto the bar.`);
     const runId = runIdRef.current;
     timerRef.current = window.setTimeout(() => {
       if (runIdRef.current !== runId) return;
@@ -198,47 +178,26 @@ const LiftPlayScreen = ({
           : "No story available";
 
   const statusText = resetting
-    ? "Returning all plate pairs to the rack."
+    ? "Returning plates to the rack."
     : complete
-      ? "All four experience chapters are on the bar."
+      ? "All four chapters are loaded."
       : settlingStory
         ? `${getStoryTitle(settlingStory, settlingStoryIndex)} is settling onto the bar.`
-        : `${loadedCount} of ${MAX_STORIES} experience chapters loaded.`;
+        : `${loadedCount} of ${totalStories} chapters loaded.`;
 
   return (
     <section
       aria-busy={settlingStoryIndex >= 0 || resetting}
-      aria-label="Strongman experience playscreen"
+      aria-label="230 kilogram deadlift introduction"
       className={`lift-play-screen ${complete ? "is-complete" : ""} ${
         settlingStoryIndex >= 0 ? "is-settling" : ""
       } ${resetting ? "is-resetting" : ""}`}
       data-loaded-count={loadedCount}
     >
-      <div className="lift-play-screen__event-picker" role="group" aria-label="Choose a strongman event">
-        {eventList.map((event, index) => {
-          const eventId = getEventId(event, index);
-          const isSelected = eventId === activeEventId;
-
-          return (
-            <button
-              aria-controls={`${instanceId}-event-stage`}
-              aria-pressed={isSelected}
-              className={`lift-play-screen__event-button ${isSelected ? "is-selected" : ""}`}
-              key={eventId}
-              onClick={() => setSelectedEventId(eventId)}
-              type="button"
-            >
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              {event.label}
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="lift-play-screen__stage" id={`${instanceId}-event-stage`}>
+      <div className="lift-play-screen__stage" id={`${instanceId}-deadlift-stage`}>
         <figure className="lift-play-screen__event-media">
-          {selectedImage.src && (
-            <picture className="lift-play-screen__picture" key={activeEventId}>
+          {image.src && (
+            <picture className="lift-play-screen__picture">
               {imageSources.map((source) => (
                 <source
                   key={`${source.media || "all"}-${source.srcSet}`}
@@ -248,54 +207,22 @@ const LiftPlayScreen = ({
                 />
               ))}
               <img
-                alt={
-                  selectedImage.alt ||
-                  `Gabriel Connolly competing in the ${selectedEvent?.label || "selected strongman"} event`
-                }
+                alt={image.alt || "Gabriel Connolly completing a deadlift at a strength competition"}
                 className="lift-play-screen__photo"
                 decoding="async"
-                loading={selectedIndex > 0 ? "lazy" : "eager"}
-                sizes={selectedImage.sizes || "(max-width: 720px) 100vw, 58vw"}
-                src={selectedImage.src}
-                srcSet={selectedImage.srcSet}
+                loading="eager"
+                sizes={image.sizes || "(max-width: 720px) 100vw, 58vw"}
+                src={image.src}
+                srcSet={image.srcSet}
               />
             </picture>
           )}
 
           <figcaption className="lift-play-screen__lower-third">
-            <span>Event {String(selectedIndex + 1).padStart(2, "0")}</span>
-            <strong>{selectedEvent?.label}</strong>
+            <span>Deadlift</span>
+            <strong>{deadlift.totalKg || 230} kg PR</strong>
           </figcaption>
 
-          <svg
-            aria-label="GC, Load Tested Systems, 2027"
-            className="lift-play-screen__badge"
-            role="img"
-            viewBox="0 0 200 200"
-          >
-            <defs>
-              <path id={`${instanceId}-badge-top`} d="M 28 100 A 72 72 0 0 1 172 100" />
-              <path id={`${instanceId}-badge-bottom`} d="M 172 108 A 72 72 0 0 1 28 108" />
-            </defs>
-            <circle className="lift-badge__outer" cx="100" cy="100" r="94" />
-            <circle className="lift-badge__ring" cx="100" cy="100" r="76" />
-            <circle className="lift-badge__hub" cx="100" cy="100" r="48" />
-            <text className="lift-badge__rim-text">
-              <textPath href={`#${instanceId}-badge-top`} startOffset="50%" textAnchor="middle">
-                LOAD TESTED
-              </textPath>
-            </text>
-            <text className="lift-badge__rim-text">
-              <textPath href={`#${instanceId}-badge-bottom`} startOffset="50%" textAnchor="middle">
-                SYSTEMS 2027
-              </textPath>
-            </text>
-            <text className="lift-badge__monogram" textAnchor="middle" x="100" y="112">
-              GC
-            </text>
-            <circle className="lift-badge__bolt" cx="20" cy="100" r="3" />
-            <circle className="lift-badge__bolt" cx="180" cy="100" r="3" />
-          </svg>
         </figure>
 
         <div className="lift-play-screen__test">
@@ -303,53 +230,47 @@ const LiftPlayScreen = ({
             aria-labelledby={`${instanceId}-barbell-title ${instanceId}-barbell-description`}
             className={`lift-play-screen__barbell ${complete ? "is-lifted" : ""}`}
             role="img"
-            viewBox="0 0 760 280"
+            viewBox="0 0 960 280"
           >
-            <title id={`${instanceId}-barbell-title`}>Experience chapter barbell</title>
+            <title id={`${instanceId}-barbell-title`}>230 kilogram deadlift barbell</title>
             <desc id={`${instanceId}-barbell-description`}>
-              Four paired plate sets represent Wells Fargo, Salt32, Knight Hacks, and USO philanthropy. One experience
-              chapter loads per button press.
+              A 20 kilogram bar is loaded with four 25 kilogram plates and one 5 kilogram plate on each side for
+              Gabriel Connolly&apos;s 230 kilogram deadlift. The chapters of his story load in four deliberate steps.
             </desc>
             <g className="lift-barbell__assembly">
-              <rect className="lift-barbell__shaft" height="14" rx="7" width="690" x="35" y="133" />
-              <rect className="lift-barbell__collar" height="34" width="20" x="72" y="123" />
-              <rect className="lift-barbell__collar" height="34" width="20" x="668" y="123" />
-              <circle className="lift-barbell__sleeve" cx="48" cy="140" r="10" />
-              <circle className="lift-barbell__sleeve" cx="712" cy="140" r="10" />
+              <rect className="lift-barbell__shaft" height="14" rx="7" width="890" x="35" y="133" />
+              <rect className="lift-barbell__collar lift-barbell__collar--competition" height="38" rx="4" width="15" x="283" y="121" />
+              <rect className="lift-barbell__collar lift-barbell__collar--competition" height="38" rx="4" width="15" x="662" y="121" />
+              <path className="lift-barbell__collar-groove" d="M288 124v32m5-32v32m374-32v32m5-32v32" />
+              <path
+                className="lift-barbell__knurl"
+                d="M400 135l7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10m5-10 7 10"
+              />
+              <circle className="lift-barbell__sleeve" cx="50" cy="140" r="10" />
+              <circle className="lift-barbell__sleeve" cx="910" cy="140" r="10" />
 
               {PLATE_SLOTS.map((slot, index) => {
-                const story = storyList[index];
-                if (!story) return null;
-
-                const isSettling = index === settlingStoryIndex;
-                const isLoaded = !resetting && (index < loadedCount || isSettling);
-                const isActive = !resetting && index === activeStoryIndex;
+                const isSettling = slot.storyIndex === settlingStoryIndex;
+                const isLoaded = !resetting && (slot.storyIndex < loadedCount || isSettling);
+                const isActive = !resetting && slot.storyIndex === activeStoryIndex;
                 const stateClasses = `${isLoaded ? "is-loaded" : ""} ${isSettling ? "is-settling" : ""} ${
                   isActive ? "is-active" : ""
                 }`;
-                const plateLabel = story.plate || story.plateLabel || DEFAULT_PLATE_LABELS[index];
+                const rightX = 960 - (slot.leftX + slot.width);
+                const plateLabel = DEFAULT_PLATE_LABELS[index];
 
                 return (
-                  <g
-                    className={`lift-plate-pair lift-plate-pair--${index + 1} ${stateClasses}`}
-                    key={getStoryId(story, index)}
-                  >
-                    {[slot.leftX, slot.rightX].map((x, sideIndex) => (
+                  <g className={`lift-plate-pair lift-plate-pair--${index + 1} ${stateClasses}`} key={plateLabel + index}>
+                    {[slot.leftX, rightX].map((x, sideIndex) => (
                       <g
                         className={`lift-plate lift-plate--${index + 1} ${
                           sideIndex === 0 ? "lift-plate--left" : "lift-plate--right"
                         } ${stateClasses}`}
                         data-plate-color={slot.color}
                         key={sideIndex === 0 ? "left" : "right"}
+                        style={{ "--plate-delay": `${slot.delay}ms` }}
                       >
-                        <rect
-                          className="lift-plate__body"
-                          height={slot.height}
-                          rx="6"
-                          width={slot.width}
-                          x={x}
-                          y={slot.y}
-                        />
+                        <rect className="lift-plate__body" height={slot.height} rx="6" width={slot.width} x={x} y={slot.y} />
                         <rect
                           className="lift-plate__groove"
                           height={slot.height - 16}
@@ -400,18 +321,23 @@ const LiftPlayScreen = ({
         className={`lift-play-screen__story-panel ${activeStory ? "is-active" : "is-empty"}`}
       >
         <div className="lift-story-panel__meta">
-          <span>{activeStory?.category || "Experience chapters"}</span>
+          <span>{activeStory?.category || "The story behind the bar"}</span>
           <span>
-            {String(Math.max(activeStoryIndex + 1, 0)).padStart(2, "0")} / {String(MAX_STORIES).padStart(2, "0")}
+            {String(Math.max(activeStoryIndex + 1, 0)).padStart(2, "0")} / {String(totalStories).padStart(2, "0")}
           </span>
         </div>
         <strong className="lift-story-panel__title" id={`${instanceId}-story-title`}>
-          {activeStory ? getStoryTitle(activeStory, activeStoryIndex) : "Load one experience at a time"}
+          {activeStory ? getStoryTitle(activeStory, activeStoryIndex) : "Load the four chapters"}
         </strong>
         <p className="lift-story-panel__short">
-          {activeStory?.short || "Each click adds one paired plate set and opens the story it represents."}
+          {activeStory?.short || "Each load adds real plates to a 230 kilogram deadlift and introduces one part of my story."}
         </p>
-        {activeStory?.detail && <p className="lift-story-panel__detail">{activeStory.detail}</p>}
+        {activeStory?.detail && (
+          <details className="lift-story-panel__details" key={getStoryId(activeStory, activeStoryIndex)}>
+            <summary>Read the full chapter</summary>
+            <p>{activeStory.detail}</p>
+          </details>
+        )}
       </section>
     </section>
   );

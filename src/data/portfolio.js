@@ -1,11 +1,11 @@
 import headshot from "../assets/optimized/headshot-420.webp";
+import jpmcCommunityMap from "../assets/jpmc-code-for-good-community-map.jpg";
+import jpmcPolicyUpdates from "../assets/jpmc-code-for-good-policy-updates.jpg";
 import knightHacksImage from "../assets/knight-hacks.png";
 import memorAIImage from "../assets/memor-ai.png";
 import strongmanDeadlift720 from "../assets/optimized/strongman-wide-720.webp";
 import strongmanDeadlift1200 from "../assets/optimized/strongman-wide-1200.webp";
 import strongmanDeadlift1600 from "../assets/optimized/strongman-wide-1600.webp";
-import strongmanPress540 from "../assets/optimized/strongman-portrait-540.webp";
-import strongmanPress800 from "../assets/optimized/strongman-portrait-800.webp";
 import thetaChiImage from "../assets/optimized/theta-chi-640.webp";
 import wellsFargoImage from "../assets/optimized/wells-speaking-640.webp";
 import resumeUrl from "../assets/gabriel-connolly-resume.pdf";
@@ -13,9 +13,9 @@ import resumeUrl from "../assets/gabriel-connolly-resume.pdf";
 export const siteMeta = {
   name: "J. Gabriel Connolly",
   shortName: "Gabriel Connolly",
-  title: "Gabriel Connolly | Backend, Infrastructure & Full-Stack Engineer",
+  title: "Gabriel Connolly | UCF Computer Science",
   description:
-    "Gabriel Connolly is a 2027 new grad engineer who builds dependable backend systems and thoughtful full-stack products.",
+    "UCF Computer Science student focused on backend, infrastructure, and full-stack engineering. Graduating May 2027.",
   roleTargets: ["Backend", "Infrastructure", "Full Stack"],
   graduation: "Expected May 2027",
   university: "University of Central Florida",
@@ -34,8 +34,8 @@ export const hero = {
   role: "Backend, Infrastructure, and Full-Stack Engineer",
   education: "Computer Science at UCF, graduating May 2027",
   statement:
-    "I like working on the parts of software people usually notice only when they break. I’ve spent two summers at Wells Fargo, co-founded Salt32, and built StackRoast from scratch.",
-  availability: "Open to new-grad conversations for 2027.",
+    "Hi, I'm James (Gabe) Connolly, welcome to my portfolio!",
+  availability: "Available",
   primaryAction: { label: "See my experience", href: "#experience" },
   resumeAction: {
     label: "Download resume",
@@ -50,37 +50,23 @@ export const hero = {
   ],
 };
 
-export const events = [
-  {
-    id: "deadlift",
-    label: "Deadlift",
-    caption: "Start with the deadlift, then load the stories behind the work.",
-    image: {
-      src: strongmanDeadlift720,
-      sources: [
-        {
-          media: "(max-width: 720px)",
-          srcSet: `${strongmanDeadlift720} 720w`,
-          type: "image/webp",
-        },
-      ],
-      srcSet: `${strongmanDeadlift720} 720w, ${strongmanDeadlift1200} 1200w, ${strongmanDeadlift1600} 1600w`,
-      sizes: "(max-width: 720px) 360px, 62vw",
-      alt: "Gabriel Connolly completing a deadlift at a strength competition",
-    },
+export const deadlift = {
+  label: "Deadlift",
+  totalKg: 230,
+  image: {
+    src: strongmanDeadlift720,
+    sources: [
+      {
+        media: "(max-width: 720px)",
+        srcSet: `${strongmanDeadlift720} 720w`,
+        type: "image/webp",
+      },
+    ],
+    srcSet: `${strongmanDeadlift720} 720w, ${strongmanDeadlift1200} 1200w, ${strongmanDeadlift1600} 1600w`,
+    sizes: "(max-width: 720px) 360px, 62vw",
+    alt: "Gabriel Connolly completing a 230 kilogram deadlift at a strength competition",
   },
-  {
-    id: "overhead-press",
-    label: "Overhead Press",
-    caption: "A different lift, with the same four chapters behind it.",
-    image: {
-      src: strongmanPress540,
-      srcSet: `${strongmanPress540} 540w, ${strongmanPress800} 800w`,
-      sizes: "(max-width: 720px) 360px, 42vw",
-      alt: "Gabriel Connolly pressing a barbell overhead at a strength competition",
-    },
-  },
-];
+};
 
 export const loadStories = [
   {
@@ -235,11 +221,6 @@ export const selectedProjects = [
     date: "June 2026",
     outcome:
       "I designed, built, and shipped a supplement-audit app that keeps its scoring explainable and every verdict tied to a source.",
-    metrics: [
-      { value: "393", label: "peer-reviewed references" },
-      { value: "157", label: "compounds" },
-      { value: "60+", label: "research sources ingested" },
-    ],
     details: [
       "Built and launched the application around 157 compounds and 393 peer-reviewed references, then ingested and cleaned research data from more than 60 sources with Python workers.",
       "Developed a deterministic rules engine for dose, timing, and interaction analysis, cached identical stack evaluations for seven days, and rechecked paid reports for material new research.",
@@ -250,6 +231,23 @@ export const selectedProjects = [
     links: [
       { label: "Visit StackRoast", href: "https://trystackroast.com" },
       { label: "View code", href: "https://github.com/ConnollyCreates/stackroast" },
+    ],
+  },
+  {
+    id: "outfittr",
+    name: "Outfittr",
+    date: "February 2026",
+    outcome:
+      "A digital wardrobe manager for organizing clothes and building outfits across web and mobile.",
+    details: [
+      "Owned the account flow, including registration, email verification, and JWT-based authentication.",
+      "Updated account storage and MongoDB data handling so user records stayed in sync with the app's account experience.",
+      "Collaborated on a shared REST API that supports both the React web client and Flutter mobile app.",
+    ],
+    technologies: ["Node.js", "Express", "MongoDB", "JWT", "React", "Flutter"],
+    links: [
+      { label: "Visit Outfittr", href: "http://outfittr.xyz/" },
+      { label: "View code", href: "https://github.com/LBuser03/Outfittr" },
     ],
   },
   {
@@ -275,15 +273,27 @@ export const selectedProjects = [
     date: "October 2025",
     outcome:
       "At Code for Good, our team built and demonstrated a heart-health outreach platform for the Black Heart Association in under 24 hours.",
-    metrics: [
-      { value: "Under 24h", label: "from brief to demo" },
-      { value: "5 people", label: "on the build team" },
-    ],
     details: [
       "I was selected for JPMorgan Chase's Code for Good and joined a five-person team building for the Black Heart Association.",
       "We developed a public-health risk heat map, mobile screening-van route planner, and live insurance-policy feed to support outreach planning.",
     ],
     technologies: ["Next.js", "React", "Node.js", "Firebase", "Gemini"],
+    media: {
+      kind: "gallery",
+      label: "Black Heart Association platform screenshots",
+      images: [
+        {
+          src: jpmcCommunityMap,
+          alt: "Black Heart Association community-reach page showing Texas counties on a map with mortality data",
+          caption: "Community reach map, with county-level mortality data to guide outreach planning.",
+        },
+        {
+          src: jpmcPolicyUpdates,
+          alt: "Black Heart Association policy-updates page showing healthcare policy articles",
+          caption: "Policy updates page, bringing healthcare coverage information into one place.",
+        },
+      ],
+    },
   },
 ];
 
@@ -424,7 +434,7 @@ export const interfaceCopy = {
 export const portfolio = {
   siteMeta,
   hero,
-  events,
+  deadlift,
   loadStories,
   experience,
   earlierEngineering,

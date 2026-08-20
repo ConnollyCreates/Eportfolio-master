@@ -77,10 +77,10 @@ The design is strong, curious, and grounded. Strongman creates recognition, whil
 **Key characteristics:**
 
 - One competition playscreen, followed by four familiar recruiter sections.
-- Authentic deadlift and overhead press photography with code-native broadcast graphics.
+- Authentic deadlift photography with code-native broadcast graphics.
 - Barlow Condensed for physical force and Source Sans 3 for fast reading.
 - Ruled score tables and lower thirds instead of stacks of floating cards.
-- An original circular plate badge that reads `GC · LOAD TESTED · SYSTEMS · 2027`.
+- A small `GC` identity disc in the header, with no badge over the competition photograph.
 - Optional click-by-click lift motion that introduces four parts of Gabriel's story without gating them.
 
 ## Colors
@@ -139,9 +139,9 @@ Use a strict visible grid inspired by televised results graphics. Full-width rul
 
 Spacing alternates between dense score information and generous section changes. Use 16 to 24 pixels inside rows, 48 to 96 pixels between major sections, and fluid outer gutters.
 
-## Identity Badge
+## Identity Mark
 
-The badge is an original circular plate mark, not a sports logo. Its outer ring reads `GC · LOAD TESTED · SYSTEMS · 2027`; a simple `GC` monogram or hub shape occupies the center. Render it as inline SVG or CSS so it remains sharp, tintable, and lightweight.
+The small `GC` disc in the header is Gabriel's identity mark, not a sports logo. It remains separate from the photo so the deadlift image stays documentary and uncluttered.
 
 Do not use the exact WSM logo, `WORLD'S STRONGEST MAN` word mark, crown motifs, globe lockups, copied typography, or recognizable event trade dress. Do not describe Gabriel as affiliated with, sponsored by, or competing in WSM. Incidental meet branding inside authorized photos remains documentary background only.
 
@@ -151,13 +151,13 @@ Do not use the exact WSM logo, `WORLD'S STRONGEST MAN` word mark, crown motifs, 
 
 Use a compact fixed or sticky header with Gabriel's original plate badge, Experience, Projects, About, and Resume. Email is the persistent action. The mobile menu uses an explicit open and close button, full-width 48 pixel rows, focus containment while open, Escape support, and focus restoration when closed.
 
-### Event selector
+### Deadlift identity
 
-Deadlift and Overhead Press are two adjacent buttons with an accessible selected state. Deadlift is the default. Plate Blue identifies the selected event through fill plus text or icon. The Overhead Press image must not be requested until selection. Rename this event to Log Press only after a matching authorized photograph is supplied.
+The playscreen presents one actual 230 kilogram deadlift. The lower third names the lift and its weight, rather than offering alternate event modes that repeat the same content.
 
 ### Lift stage
 
-The event photograph carries a code-native barbell overlay. Four symmetric plate pairs read `WF`, `S32`, `KH`, and `USO`. They represent Wells Fargo, Salt32, Knight Hacks, and Gabriel's philanthropy work for the USO. From the bar outward, use red, red, blue, then green so the visual follows a believable powerlifting load. Plates look like simplified competition plates, not branded equipment. Keep labels readable at 360 pixels and expose each full story in nearby text.
+The event photograph carries a code-native barbell overlay for Gabriel's 230 kilogram deadlift. From the bar outward on each side, use four red 25 kilogram plates and one white 5 kilogram plate. The stacks start at the outer sleeves and sit against one another, leaving a clear central grip and knurling zone. The four story chapters still introduce Wells Fargo, Salt32, Knight Hacks, and philanthropy for the USO, with plate groups loading for each chapter. Plates look like simplified competition equipment, not branded equipment. Keep labels readable at 360 pixels and expose each full story in nearby text.
 
 ### Load the next chapter control
 
@@ -169,7 +169,7 @@ The primary Signal Red button advances one deliberate step at a time:
 4. `Load Theta Chi + USO` adds the `USO` pair and shows the philanthropy story.
 5. After the fourth pair settles, raise the completed bar by 12 pixels and offer `Start over`.
 
-Each pair uses an approximately 800 millisecond transform and opacity transition so a visitor can follow the movement. Disable the control only while that single pair is settling. Start over resets the unloaded state and waits for the next user click. Animate only opacity and transforms with `cubic-bezier(0.16, 1, 0.3, 1)`. Under reduced motion, keep the manual progression but apply each step immediately.
+Each group uses an approximately 1.2 second transform and opacity transition so a visitor can follow the movement. Disable the control only while that group is settling. Start over resets the unloaded state and waits for the next user click. Animate only opacity and transforms with `cubic-bezier(0.16, 1, 0.3, 1)`. Under reduced motion, keep the manual progression but apply each step immediately.
 
 ### Chapter strip
 
@@ -187,14 +187,14 @@ Primary buttons are Signal Red with Arena text for accessible small-label contra
 
 Depth comes from authentic photography, tonal separation, complete boundaries, and score-table rules. Avoid ambient shadows, glass blur, glossy chrome, and ornamental glows. A restrained shadow is acceptable only to separate the barbell graphic from the photograph.
 
-Deadlift is the only initial hero request. Supply responsive width and format variants and keep the mobile candidate below 90 KB. Overhead Press loads after explicit selection. Every meaningful photo has concise alt text that identifies Gabriel, the lift, and the relevant setting without overstating competition credentials.
+Supply responsive Deadlift image width and format variants and keep the mobile candidate below 90 KB. Every meaningful photo has concise alt text that identifies Gabriel, the lift, and the relevant setting without overstating competition credentials.
 
 ## Accessibility and Responsive Rules
 
 - Meet WCAG 2.2 AA contrast and semantic requirements.
 - Preserve logical heading order and one clear page landmark structure.
 - Keep every tap target at least 44 by 44 CSS pixels.
-- Make event selection, menu state, disclosures, and load-test status keyboard and screen-reader operable.
+- Make the load sequence, menu state, disclosures, and load-test status keyboard and screen-reader operable.
 - Use a polite live region to announce which chapter was loaded and when the full bar is ready.
 - Do not convey meaning through red, blue, or green alone.
 - Remove sequence timing and decorative transforms under `prefers-reduced-motion`.
@@ -207,7 +207,6 @@ Deadlift is the only initial hero request. Supply responsive width and format va
 - Keep production JavaScript below 65 KB gzip.
 - Keep production CSS below 10 KB gzip.
 - Keep the initial mobile Deadlift image below 90 KB.
-- Defer Overhead Press imagery until event selection.
 - Use React state, inline SVG, and CSS transforms for the lift. Do not add canvas, physics, or animation libraries.
 - Reserve media dimensions to avoid layout shift.
 - Preserve readable identity, chapter summaries, links, and experience if enhancement code fails.
@@ -221,7 +220,7 @@ Deadlift is the only initial hero request. Supply responsive width and format va
 - Keep Experience, Projects, About, and Contact conventional and fast to scan.
 - Use score graphics, lower thirds, ruled tables, and plate geometry with restraint.
 - Make every interactive result available as visible text.
-- Use the original `GC · LOAD TESTED · SYSTEMS · 2027` badge.
+- Use the small `GC` header disc, and keep the photo free of badge overlays.
 
 ### Do not
 

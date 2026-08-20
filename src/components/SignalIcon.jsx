@@ -12,6 +12,7 @@ const iconPaths = {
   close: <><path d="m6 6 12 12" /><path d="M18 6 6 18" /></>,
   pulse: <><path d="M3 12h4l2-7 4 14 2-7h6" /></>,
   shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />,
+  zoom: <><circle cx="11" cy="11" r="6" /><path d="m20 20-4.35-4.35" /><path d="M11 8v6" /><path d="M8 11h6" /></>,
 };
 
 const SignalIcon = ({ name, size = 18, className = "" }) => (

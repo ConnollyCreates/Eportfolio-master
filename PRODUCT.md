@@ -42,11 +42,11 @@ The header exposes Experience, Projects, About, and Resume. Email remains the pe
 
 ## Signature Interaction
 
-The opening playscreen offers Deadlift and Overhead Press event selectors. Deadlift is selected by default. Overhead Press imagery loads only after the visitor requests it. The second label follows the supplied photograph accurately; it can become Log Press when a matching authorized image is available.
+The opening playscreen is built around one real 230 kilogram deadlift. There is no alternate event selector or duplicate story mode.
 
-A code-native barbell overlay carries four symmetric plate pairs labeled `WF`, `S32`, `KH`, and `USO`. Each pair represents one part of Gabriel's story: Wells Fargo, Salt32, Knight Hacks, and philanthropy for the USO. From the bar outward, the physical plate order is red, red, blue, then green.
+A code-native barbell overlays the photograph with four red 25 kilogram plates and one white 5 kilogram plate on each side. Each stack sits against the outer sleeves, leaving the center clear for hands and knurling. With a 20 kilogram bar, the graphic represents Gabriel's 230 kilogram deadlift.
 
-The load is manual and deliberate. Each button press adds exactly one plate pair over roughly 800 milliseconds, reveals the matching short story, and changes the button to name the next chapter. The fourth pair settles before the bar rises. The completed control offers `Start over`; it resets the bar without automatically rushing through the sequence again. This is a short personal introduction, not a game or navigation gate. React state, inline SVG, and CSS transforms are sufficient. Do not use canvas, physics, dragging, audio, or a new runtime dependency.
+The load is manual and deliberate. Four button presses add one meaningful group of plates over roughly 1.2 seconds and introduce Wells Fargo, Salt32, Knight Hacks, and Theta Chi with the USO. The fourth group settles before the bar rises. The completed control offers `Start over`; it resets the bar without automatically rushing through the sequence again. Each loaded chapter exposes a readable short introduction and a native disclosure for its full text. This is a short personal introduction, not a game or navigation gate. React state, inline SVG, and CSS transforms are sufficient. Do not use canvas, physics, dragging, audio, or a new runtime dependency.
 
 Under reduced-motion preferences, keep the same click-by-click progression but remove decorative movement and delays. Core identity, chapter labels, navigation, and actions remain visible before and without running the interaction.
 
@@ -58,7 +58,7 @@ Do not restore generic service cards, outdated technology logo collections, long
 
 Favor ordinary language over portfolio jargon. Avoid phrases such as `production products`, `systems under real constraints`, `failure modes`, `engineering evidence`, or `correctness` when a clearer sentence can say what Gabriel actually built. Project summaries should answer what it is, why Gabriel built it, and what he personally handled before listing implementation detail.
 
-The exact WSM logo, the `WORLD'S STRONGEST MAN` word mark, event trade dress, and any derivative mark that implies endorsement or affiliation are prohibited. Use the original circular `GC · LOAD TESTED · SYSTEMS · 2027` plate badge as Gabriel's identity mark. Incidental meet branding may remain inside authentic, authorized photography, but it cannot become interface branding.
+The exact WSM logo, the `WORLD'S STRONGEST MAN` word mark, event trade dress, and any derivative mark that implies endorsement or affiliation are prohibited. Use the small `GC` disc in the header as Gabriel's identity mark, but do not place a badge over the authentic deadlift photography. Incidental meet branding may remain inside authorized photography, but it cannot become interface branding.
 
 ## Anti-references
 
@@ -82,8 +82,8 @@ The exact WSM logo, the `WORLD'S STRONGEST MAN` word mark, event trade dress, an
 
 ## Accessibility and Performance
 
-Target WCAG 2.2 AA. All content and controls must work with keyboard, touch, screen readers, zoom, reduced-motion preferences, and without hover. Maintain logical heading order, useful alt text, descriptive links, visible focus, sufficient contrast, and touch targets of at least 44 by 44 CSS pixels. Event selectors expose their selected state, each loaded chapter is announced through a polite live region, and information is never conveyed by color or motion alone.
+Target WCAG 2.2 AA. All content and controls must work with keyboard, touch, screen readers, zoom, reduced-motion preferences, and without hover. Maintain logical heading order, useful alt text, descriptive links, visible focus, sufficient contrast, and touch targets of at least 44 by 44 CSS pixels. Each loaded chapter is announced through a polite live region, and information is never conveyed by color or motion alone.
 
 The experience must remain complete at 360 CSS pixels wide. Mobile order is identity, event image and load control, compact chapter strip, and actions. Avoid horizontal overflow at 360, 390, 768, and 1440 pixel validation widths.
 
-Keep production JavaScript below 65 KB gzip and CSS below 10 KB gzip. Keep the initial mobile hero image below 90 KB. Do not request the Overhead Press image until the selector is activated. Do not autoplay audio or video. Respect data-saving behavior where practical and retain meaningful content if enhancement code fails.
+Keep production JavaScript below 65 KB gzip and CSS below 10 KB gzip. Keep the initial mobile hero image below 90 KB. Do not autoplay audio or video. Respect data-saving behavior where practical and retain meaningful content if enhancement code fails.

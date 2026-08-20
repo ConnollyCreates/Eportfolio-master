@@ -6,8 +6,8 @@ import {
   about,
   archiveProjects,
   contact,
+  deadlift,
   earlierEngineering,
-  events,
   experience,
   hero,
   leadership,
@@ -181,7 +181,7 @@ function Hero() {
 
       <div className="hero__visual">
         <LiftPlayScreen
-          events={events}
+          deadlift={deadlift}
           onStoryChange={setActiveStoryId}
           stories={loadStories}
         />
@@ -262,6 +262,81 @@ function EntryLinks({ links = [] }) {
   );
 }
 
+function ImageLightbox({ image, onClose }) {
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return undefined;
+
+    const handleCancel = (event) => {
+      event.preventDefault();
+      onClose();
+    };
+
+    dialog.addEventListener("cancel", handleCancel);
+    dialog.showModal();
+
+    return () => {
+      dialog.removeEventListener("cancel", handleCancel);
+      if (dialog.open) dialog.close();
+    };
+  }, [onClose]);
+
+  return (
+    <dialog
+      aria-label="Expanded project screenshot"
+      className="image-lightbox"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+      ref={dialogRef}
+    >
+      <div className="image-lightbox__content">
+        <div className="image-lightbox__toolbar">
+          <p>{image.caption}</p>
+          <button aria-label="Close expanded image" className="image-lightbox__close" onClick={onClose} type="button">
+            Close <SignalIcon name="close" size={18} />
+          </button>
+        </div>
+        <img alt={image.alt} className="image-lightbox__image" src={image.src} />
+      </div>
+    </dialog>
+  );
+}
+
+function ImageGallery({ media }) {
+  const [activeImage, setActiveImage] = useState(null);
+
+  return (
+    <>
+      <div className="entry-media-gallery" aria-label={media.label ?? "Project screenshots"}>
+        {media.images.map((image) => (
+          <figure className="entry-media" key={image.src}>
+            <button
+              aria-label={`Expand ${image.alt}`}
+              className="entry-media__zoom"
+              onClick={() => setActiveImage(image)}
+              type="button"
+            >
+              <img
+                alt={image.alt}
+                height={image.height}
+                loading="lazy"
+                src={image.src}
+                width={image.width}
+              />
+              <span>Expand image <SignalIcon name="zoom" size={17} /></span>
+            </button>
+            {image.caption && <figcaption>{image.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+      {activeImage && <ImageLightbox image={activeImage} onClose={() => setActiveImage(null)} />}
+    </>
+  );
+}
+
 function EntryDetails({ entry, summaryLabel = "Technical details" }) {
   const hasContent = entry.details?.length || entry.technologies?.length || entry.media;
   if (!hasContent) return null;
@@ -292,6 +367,7 @@ function EntryDetails({ entry, summaryLabel = "Technical details" }) {
             {entry.media.caption && <figcaption>{entry.media.caption}</figcaption>}
           </figure>
         )}
+        {entry.media?.kind === "gallery" && <ImageGallery media={entry.media} />}
       </div>
     </details>
   );
@@ -304,8 +380,8 @@ function ExperienceSection() {
         headingId="experience-title"
         number="01"
         label="Experience"
-        title="Where I’ve worked."
-        intro="Here’s the quick version of each role. Open the technical details if you want to see how I approached the work."
+        title="Where I’ve been."
+        intro="Here's a quick overview of each experience. Open the details if you wanna see how I got it done."
       />
       <div className="competition-table">
         <div className="competition-table__header" aria-hidden="true">
@@ -334,7 +410,7 @@ function ExperienceSection() {
 
       <details className="archive-block earlier-engineering">
         <summary>
-          <span>Earlier engineering</span>
+          <span>Earlier Experiences</span>
           <span>{earlierEngineering.length} roles</span>
           <SignalIcon className="details-chevron" name="chevron" size={19} />
         </summary>
@@ -363,7 +439,7 @@ function ProjectSection() {
         headingId="projects-title"
         number="02"
         label="Projects"
-        title="A few things I’ve built."
+        title="A few things I’ve done."
         intro="These are the projects I’m proudest of, from a product I shipped on my own to two fast-moving team builds."
       />
 
